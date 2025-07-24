@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <title>অ্যাডমিন ড্যাশবোর্ড</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif; }
+    body { background: #fff; overflow-x: hidden; }
+
+    header {
+      background: #F05A28;
+      color: white;
+      text-align: center;
+      padding: 20px 10px;
+      animation: fadeInDown 0.5s ease;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    header.hidden {
+      transform: translateY(-100%);
+      opacity: 0;
+      height: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    header h1 {
+      font-size: 28px;
+      margin-bottom: 5px;
+    }
+
+    .content-container {
+      position: relative;
+      min-height: calc(100vh - 150px); /* Adjust based on header/footer height */
+      overflow: hidden;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      padding: 20px;
+      transition: transform 0.3s ease;
+      animation: fadeIn 0.5s ease;
+    }
+
+    .content-section {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 0;
+      transform: translateX(100%);
+      transition: all 0.3s ease;
+      background: white;
+      opacity: 0;
+      visibility: hidden;
+      z-index: 100;
+      overflow-y: auto;
+    }
+
+    .content-section.active {
+      transform: translateX(0);
+      opacity: 1;
+      visibility: visible;
+      animation: fadeInRight 0.3s ease;
+    }
+
+    .content-section.exit {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+
+    .card {
+      background: #F05A28;
+      color: white;
+      border-radius: 15px;
+      padding: 15px 10px;
+      text-align: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+      cursor: pointer;
+      transform: scale(1);
+    }
+
+    .card:hover {
+      background: #e04e1f;
+      transform: scale(1.03);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .icon {
+      font-size: 28px;
+      margin-bottom: 8px;
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover .icon {
+      transform: rotate(10deg);
+    }
+
+    .label {
+      font-size: 15px;
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover .label {
+      transform: translateY(2px);
+    }
+
+    footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #f5f5f5;
+      border-top: 1px solid #ddd;
+      display: flex;
+      justify-content: space-around;
+      padding: 10px 0;
+      animation: fadeInUp 0.5s ease;
+      z-index: 90;
+    }
+
+    footer div {
+      color: #666;
+      font-size: 14px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      padding: 5px 10px;
+      border-radius: 5px;
+    }
+
+    footer div:hover {
+      color: #F05A28;
+      transform: translateY(-3px);
+    }
+
+    /* New Navbar Styles */
+    .section-navbar {
+      display: flex;
+      align-items: center;
+      background: #F05A28;
+      color: white;
+      padding: 15px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .back-button {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 24px;
+      margin-right: 15px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 30px;
+      height: 30px;
+    }
+
+    .back-button:hover {
+      transform: translateX(-3px);
+    }
+
+    .section-title {
+      font-size: 18px;
+      font-weight: bold;
+      flex-grow: 1;
+      text-align: center;
+      margin-right: 30px; /* To balance the back button space */
+    }
+
+    .section-content {
+      padding: 0;
+      animation: fadeInUp 0.5s ease 0.2s both;
+      min-height: calc(100vh - 60px); /* Adjust based on navbar height */
+      padding-bottom: 70px; /* Space for footer */
+    }
+    
+    /* Iframe styles */
+    .section-iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      min-height: calc(100vh - 60px);
+    }
+
+    /* Full-screen specific styles */
+    .fullscreen-section {
+      background: #f9f9f9;
+    }
+    
+    .fullscreen-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    /* Section specific styles */
+    .section-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    
+    .section-table th {
+      background: #F05A28;
+      color: white;
+      padding: 12px;
+      text-align: left;
+    }
+    
+    .section-table td {
+      padding: 12px;
+      border-bottom: 1px solid #eee;
+    }
+    
+    .status-active {
+      background: #4CAF50;
+      color: white;
+      padding: 4px 8px;
+      border-radius: 4px;
+    }
+    
+    .status-inactive {
+      background: #f44336;
+      color: white;
+      padding: 4px 8px;
+      border-radius: 4px;
+    }
+    
+    .stats-card {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+    }
+    
+    .stats-card h3 {
+      margin-bottom: 15px;
+      color: #F05A28;
+    }
+    
+    .activity-list {
+      list-style-type: none;
+      padding: 0;
+    }
+    
+    .activity-list li {
+      padding: 8px 0;
+      border-bottom: 1px solid #eee;
+    }
+    
+    .form-group {
+      margin-bottom: 15px;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    
+    .form-group input, 
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+    
+    .btn {
+      background: #F05A28;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .btn:hover {
+      background: #e04e1f;
+      transform: translateY(-2px);
+    }
+    
+    .flex-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    
+    .flex-item {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    @media(max-width: 500px){
+      .grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .section-navbar {
+        padding: 12px 15px;
+      }
+      
+      .section-title {
+        font-size: 16px;
+      }
+      
+      .flex-item {
+        min-width: 100%;
+      }
+    }
+
+    /* Animation Keyframes */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInRight {
+      from {
+        opacity: 0;
+        transform: translateX(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes fadeInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    /* Add bounce animation for interactive elements */
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+
+    .card:active {
+      animation: bounce 0.3s ease;
+    }
+    
+    /* Chart placeholder */
+    .chart-placeholder {
+      height: 300px;
+      background: #f0f0f0;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #666;
+      margin: 20px 0;
+    }
+  </style>
+</head>
+<body>
+
+<header id="main-header">
+  <h1>অ্যাডমিন প্যানেল</h1>
+  <p>ড্যাশবোর্ড ফিচারস</p>
+</header>
+
+<div class="content-container">
+  <!-- Main Dashboard Grid -->
+  <div class="grid" id="main-grid">
+    <div class="card" data-section="dashboard"><div class="icon">📊</div><div class="label">ড্যাশবোর্ড</div></div>
+    <div class="card" data-section="products"><div class="icon">📦</div><div class="label">প্রোডাক্ট ম্যানেজ</div></div>
+    <div class="card" data-section="orders"><div class="icon">📝</div><div class="label">অর্ডার ম্যানেজ</div></div>
+    <div class="card" data-section="users"><div class="icon">👥</div><div class="label">ইউজার ম্যানেজ</div></div>
+    <div class="card" data-section="sellers"><div class="icon">🏪</div><div class="label">সেলার ম্যানেজ</div></div>
+    <div class="card" data-section="payments"><div class="icon">💳</div><div class="label">পেমেন্ট রিপোর্ট</div></div>
+    <div class="card" data-section="delivery"><div class="icon">🚚</div><div class="label">ডেলিভারি সেটিং</div></div>
+    <div class="card" data-section="offers"><div class="icon">🎁</div><div class="label">অফার/ক্যাম্পেইন</div></div>
+    <div class="card" data-section="notifications"><div class="icon">🔔</div><div class="label">নোটিফিকেশন</div></div>
+    <div class="card" data-section="support"><div class="icon">📞</div><div class="label">সাপোর্ট / রিভিউ</div></div>
+    <div class="card" data-section="fullscreen"><div class="icon">🖥️</div><div class="label">ফুলস্ক্রিন ভিউ</div></div>
+  </div>
+
+  <!-- Dashboard Section -->
+  <div class="content-section" id="dashboard-section">
+    <div class="section-navbar">
+      <button class="back-button" onclick="goBack()">←</button>
+      <div class="section-title">ড্যাশবোর্ড</div>
+    </div>
+    <div class="section-content">
+      <iframe class="section-iframe" src="https://example.com/dashboard" frameborder="0"></iframe>
+    </div>
+  </div>
+
+  <!-- Products Section -->
+  <div class="content-section" id="products-section">
+    <div class="section-navbar">
+      <button class="back-button" onclick="goBack()">←</button>
+      <div class="section-title">প্রোডাক্ট ম্যানেজমেন্ট</div>
+    </div>
+    <div class="section-content">
+      <iframe class="section-iframe" src="https://example.com/products" frameborder="0"></iframe>
+    </div>
+  </div>
+
+  <!-- Orders Section -->
+  <div class="content-section" id="orders-section">
+    <div class="section-navbar">
+      <button class="back-button" onclick="goBack()">←</button>
+      <div class="section-title">অর্ডার ম্যানেজমেন্ট</div>
+    </div>
+    <div class="section-content">
+      <iframe class="section-iframe" src="https://example.com/orders" frameborder="0"></iframe>
+    </div>
+  </div>
+
+  <!-- Users Section -->
+  <div class="content-section" id="users-section">
+    <div class="section-navbar">
+      <button class="back-button" onclick="goBack()">←</button>
+      <div class="section-title">ইউজার ম্যানেজমেন্ট</div>
+    </div>
+    <div class="section-content">
+      <iframe class="section-iframe" src="https://example.com/users" frameborder="0"></iframe>
+    </div>
+  </div>
+
+  <!-- Sellers Section -->
+  <div class="content-section" id="sellers-section">
+    <div class="section-navbar">
+      <button class="back-button" onclick="goBack()">←</button>
+      <div class="section-title">সেলার ম্যানেজমেন্ট</div>
+    </div>
+    <div class="section-content">
+      <iframe class="section-iframe" src="https://example.com/sellers" frameborder="0"></iframe>
+    </div>
+  </div>
+
+  <!-- Payments Section -->
+  <div class="content-section" id="payments-section">
+    <div class="section-navbar">
+      <button class="back-button" onclick="goBack()">←</button>
+      <div class="section-title">পেমেন্ট রিপোর্ট</div>
+    </div>
+    <div class="section-content">
+      <iframe class="section-iframe" src="https://example.com/payments" frameborder="0"></iframe>
+    </div>
+  </div>
+
+  <!-- Delivery Section -->
+  <div class="content-section" id="delivery-section">
+    <div class="section-navbar">
+      <button class="back-button" onclick="goBack()">←</button>
+      <div class="section-title">ডেলিভারি সেটিংস</div>
+    </div>
+    <div class="section-content">
+      <iframe class="section-iframe" src="https://example.com/delivery" frameborder="0"></iframe>
+    </div>
+  </div>
+
+  <!-- Offers Section -->
+  <div class="content-section" id="offers-section">
+    <div class="section-navbar">
+      <button class="back-button" onclick="goBack()">←</button>
+      <div class="section-title">অফার ও ক্যাম্পেইন</div>
+    </div>
+    <div class="section-content">
+      <iframe class="section-iframe" src="https://example.com/offers" frameborder="0"></iframe>
+    </div>
+  </div>
+
+  <!-- Notifications Section -->
+  <div class="content-section" id="notifications-section">
+    <div class="section-navbar">
+      <button class="back-button" onclick="goBack()">←</button>
+      <div class="section-title">নোটিফিকেশন</div>
+    </div>
+    <div class="section-content">
+      <iframe class="section-iframe" src="https://example.com/notifications" frameborder="0"></iframe>
+    </div>
+  </div>
+
+  <!-- Support Section -->
+  <div class="content-section" id="support-section">
+    <div class="section-navbar">
+      <button class="back-button" onclick="goBack()">←</button>
+      <div class="section-title">সাপোর্ট ও রিভিউ</div>
+    </div>
+    <div class="section-content">
+      <iframe class="section-iframe" src="https://example.com/support" frameborder="0"></iframe>
+    </div>
+  </div>
+
+  <!-- Fullscreen Section -->
+  <div class="content-section fullscreen-section" id="fullscreen-section">
+    <div class="section-navbar">
+      <button class="back-button" onclick="goBack()">←</button>
+      <div class="section-title">ফুলস্ক্রিন ভিউ</div>
+    </div>
+    <div class="section-content">
+      <iframe class="section-iframe" src="https://example.com/fullscreen" frameborder="0"></iframe>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div>🏠 হোম</div>
+  <div>📋 লেনদেন</div>
+  <div>👤 কন্ট্যাক্ট</div>
+  <div>⚙️ সেটিংস</div>
+</footer>
+
+<script>
+  // Get all cards and add click event listeners
+  const cards = document.querySelectorAll('.card');
+  const mainGrid = document.getElementById('main-grid');
+  const mainHeader = document.getElementById('main-header');
+  
+  // Initialize all sections
+  const sections = document.querySelectorAll('.content-section');
+  
+  cards.forEach(card => {
+    card.addEventListener('click', function() {
+      const sectionId = this.getAttribute('data-section') + '-section';
+      const section = document.getElementById(sectionId);
+      
+      if (section) {
+        // Hide main grid with slide out animation
+        mainGrid.style.transform = 'translateX(-100%)';
+        mainGrid.style.opacity = '0';
+        
+        // Hide header
+        mainHeader.classList.add('hidden');
+        
+        // Show the selected section with slide in animation
+        setTimeout(() => {
+          mainGrid.style.display = 'none';
+          sections.forEach(s => s.classList.remove('active', 'exit'));
+          section.classList.add('active');
+        }, 300);
+      }
+    });
+  });
+
+  // Function to go back to main grid
+  function goBack() {
+    const activeSection = document.querySelector('.content-section.active');
+    
+    if (activeSection) {
+      // Slide out the current section
+      activeSection.classList.add('exit');
+      activeSection.classList.remove('active');
+      
+      // Show header again
+      mainHeader.classList.remove('hidden');
+      
+      // Show main grid with slide in animation
+      setTimeout(() => {
+        mainGrid.style.display = 'grid';
+        setTimeout(() => {
+          mainGrid.style.transform = 'translateX(0)';
+          mainGrid.style.opacity = '1';
+        }, 10);
+        activeSection.classList.remove('exit');
+      }, 300);
+    }
+  }
+
+  // Add staggered animation to cards
+  document.addEventListener('DOMContentLoaded', () => {
+    const cards = document.querySelectorAll('.card');
+    cards.forEach((card, index) => {
+      card.style.animationDelay = `${index * 0.05}s`;
+    });
+  });
+  
+  // Footer navigation
+  const footerItems = document.querySelectorAll('footer div');
+  footerItems.forEach(item => {
+    item.addEventListener('click', function() {
+      // Add bounce effect
+      this.style.transform = 'translateY(-5px)';
+      setTimeout(() => {
+        this.style.transform = 'translateY(0)';
+      }, 300);
+      
+      // You can add specific functionality for each footer item here
+      alert(this.textContent + ' ক্লিক করা হয়েছে');
+    });
+  });
+</script>
+
+</body>
+</html>

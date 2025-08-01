@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>রেফারেল Network - সহজে টাকা আয় করুন</title>
+<script type='text/javascript' src='//pl26561459.profitableratecpm.com/90/42/fc/9042fcdbc957eb34a0b7231246c251b1.js'></script>
+<style>
+  body {
+    font-family: 'Segoe UI', 'Nirmala UI', 'Kalpurush', sans-serif;
+    margin: 0; padding: 0;
+    background: linear-gradient(to bottom right, #3f87a6, #ebf8e1);
+    text-align: center;
+    padding-top: 100px; /* header height to prevent overlap */
+  }
+
+  /* Animated Text Header */
+  .text-header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 50px;
+    background: linear-gradient(135deg, #3f87a6, #2575fc);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    z-index: 1000;
+    box-shadow: 0 0px 10px rgba(0,0,0,0.3);
+    padding:10px;
+  }
+  .text-slider {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+  .slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    font-weight: bold;
+    text-align: center;
+    opacity: 0;
+    transform: translateX(100%);
+    animation: slideInOut 25s infinite;
+    padding: 0 20px;
+    box-sizing: border-box;
+  }
+  .slide:nth-child(1) { animation-delay: 0s; }
+  .slide:nth-child(2) { animation-delay: 5s; }
+  .slide:nth-child(3) { animation-delay: 10s; }
+  .slide:nth-child(4) { animation-delay: 15s; }
+  .slide:nth-child(5) { animation-delay: 20s; }
+
+  @keyframes slideInOut {
+    0% { opacity: 0; transform: translateX(100%); }
+    5% { opacity: 1; transform: translateX(0); }
+    20% { opacity: 1; transform: translateX(0); }
+    25% { opacity: 0; transform: translateX(-100%); }
+    100% { opacity: 0; transform: translateX(-100%); }
+  }
+
+  h1 { 
+    margin-top: 0; 
+    font-size: 2em; 
+    color: #333; 
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+  }
+
+  .referral-box, .balance-box, .withdraw-section, .notice-section, .notice-board, .daily-task-box {
+    max-width: 500px;
+    margin: 20px auto;
+    background: rgba(255,255,255,0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  }
+
+  .ref-link {
+    background: white;
+    padding: 12px;
+    border-radius: 10px;
+    font-size: 14px;
+    word-break: break-word;
+    border: 1px solid #ddd;
+    text-align: left;
+    cursor: pointer;
+  }
+  .ref-info {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+  .btn {
+    background: #3f87a6;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: 'Kalpurush', sans-serif;
+    font-size: 1rem;
+  }
+  .btn:hover { background: #2e6b84; }
+
+  .balance-box {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: white;
+    background: linear-gradient(135deg, #ff512f, #dd2476);
+  }
+
+  /* Withdraw responsive fix */
+  .withdraw-section {
+    display: none;
+    text-align: left;
+  }
+  .withdraw-section h3 {
+    text-align: center;
+    color: #3f87a6;
+  }
+  .withdraw-section select,
+  .withdraw-section input {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    font-family: 'Kalpurush', sans-serif;
+  }
+  .withdraw-btn {
+    background: linear-gradient(135deg, #3f87a6, #2575fc);
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    font-family: 'Kalpurush', sans-serif;
+    font-size: 1rem;
+  }
+
+  /* Stylish Notice */
+  .notice-section {
+    background: linear-gradient(135deg, #ff512f, #dd2476);
+    color: white;
+    border-radius: 12px;
+    max-width: 95%;
+    margin: 20px auto;
+    padding: 6px 0;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    overflow: hidden;
+  }
+  .notice-marquee {
+    font-weight: bold;
+    font-size: 15px;
+    white-space: nowrap;
+  }
+
+  /* Colourful Notice Board */
+  .notice-board {
+    background: linear-gradient(135deg, #ffecd2, #fcb69f);
+    border-radius: 12px;
+    max-width: 500px;
+    margin: 15px auto;
+    padding: 15px;
+    text-align: left;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    border: 1px solid rgba(255,255,255,0.4);
+  }
+  .notice-board h3 {
+    margin-top: 0;
+    color: #b91c1c;
+    font-size: 18px;
+    text-align: center;
+  }
+  .notice-board ul {
+    padding-left: 20px;
+    margin: 0;
+  }
+  .notice-board li {
+    font-size: 14px;
+    margin-bottom: 6px;
+    line-height: 1.4em;
+    color: #4b5563;
+  }
+
+  /* Daily task container */
+  .daily-task-box {
+    background: rgba(255,255,255,0.3);
+    border-radius: 15px;
+    padding: 15px;
+    display: none;
+  }
+  #dailyTasks {
+    margin-top: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+  #dailyTasks button {
+    background: #2575fc;
+    color: white;
+    border: none;
+    padding: 10px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    min-width: 100px;
+    position: relative;
+    font-family: 'Kalpurush', sans-serif;
+  }
+  #dailyTasks button:disabled {
+    background: #999;
+    cursor: not-allowed;
+  }
+  .countdown {
+    position: absolute;
+    bottom: 4px;
+    right: 6px;
+    font-size: 10px;
+    color: #ddd;
+  }
+  #share{
+    display:noe;
+  }
+</style>
+</head>
+<body>
+
+<!-- Animated Text Header -->
+<div class="text-header">
+  <div class="text-slider">
+    <div class="slide">🎉 প্রথম রেফার করলেই ১০০ টাকা বোনাস! 🎉</div>
+    <div class="slide">💰 ৫০০ টাকা হলে উত্তোলন করুন 💰</div>
+    <div class="slide">🚀 দৈনিক টাস্ক করে ইনকাম করুন 🚀</div>
+    <div class="slide">👥 বন্ধুদের আমন্ত্রণ করুন, বেশি আয় করুন 👥</div>
+    <div class="slide">✅ ১০০% বৈধ এবং সহজ আয়ের উপায় ✅</div>
+  </div>
+</div>
+<script type="text/javascript">
+  atOptions = {
+    'key': '613427f0f56f7d00415cf1e191d9d588',
+    'format': 'iframe',
+    'height': 50,
+    'width': 320,
+    'params': {}
+  };
+</script>
+<script type="text/javascript" src="//www.highperformanceformat.com/613427f0f56f7d00415cf1e191d9d588/invoke.js"></script>
+<h1>আমাদের রেফারেল Network Connect স্বাগতম 🎉</h1>
+
+<!-- Referral Section -->
+<div class="referral-box">
+  <div id="refLinkContainer" style="display:none;">
+    <div class="ref-link" id="myRefLink" title="ক্লিক করে লিংক কপি করুন"></div>
+    <div class="ref-info">
+      <span>রেফার সংখ্যা: <span id="myRefCount">0</span></span>
+      <button id="share" class="btn" onclick="shareRef()">শেয়ার করুন</button>
+    </div>
+  </div>
+  <button class="btn" id="showRefBtn" onclick="showReferral()">আমার রেফারেল লিংক</button>
+</div>
+
+<!-- Balance Section -->
+<div class="balance-box">
+  আপনার ব্যালেন্স: ৳<span id="myBalance">0</span>
+  <br /><br />
+  <button class="btn" onclick="toggleWithdraw()">টাকা উত্তোলন</button>
+  <button class="btn" onclick="toggleDailyTasks()" style="margin-left:10px;">দৈনিক টাস্ক</button>
+</div>
+
+<!-- Withdraw Section -->
+<div class="withdraw-section" id="withdrawSection">
+  <h3>💰 টাকা উত্তোলনের অনুরোধ</h3>
+  <select id="paymentMethod">
+    <option value="">পদ্ধতি নির্বাচন করুন</option>
+    <option value="bKash">bKash</option>
+    <option value="Nagad">Nagad</option>
+    <option value="Rocket">Rocket</option>
+    <option value="Upay">Upay</option>
+  </select>
+  <input type="number" id="accountNumber" placeholder="মোবাইল নম্বর লিখুন" />
+  <button class="withdraw-btn" onclick="confirmWithdraw()">✅ উত্তোলন নিশ্চিত করুন</button>
+</div>
+
+<!-- Daily Task Section -->
+<div class="daily-task-box" id="dailyTaskBox">
+  <h3>আজকের কাজগুলো করুন এবং টাকা অর্জন করুন 💰</h3>
+  <div id="dailyTasks"></div>
+</div>
+
+<!-- Marquee Notice -->
+<div class="notice-section">
+  <marquee behavior="scroll" direction="left" scrollamount="4" class="notice-marquee">
+    💰 প্রথম রেফার করলেই ১০০ টাকা বোনাস! পরবর্তী রেফার করলেই ১০+ টাকা! | 🕒 দৈনিক টাস্ক করে প্রতিদিন ইনকাম করুন 🚀 | 
+    💳 ১ টাকা হলে bKash, Nagad, Rocket, Upay এ Withdraw করুন ✅ | 
+    🔥 যত বেশি রেফার, তত বেশি আয় – নিজের নেটওয়ার্ক তৈরি করুন 🌐 | 📢 উত্তোলন এবং টাস্ক সিস্টেম ২৪/৭ চালু আছে
+  </marquee>
+</div>
+
+<!-- Notice Board -->
+<div class="notice-board">
+  <h3>📢 নোটিশ বোর্ড</h3>
+  <ul>
+    <li>💰 প্রথম রেফার করলেই ১০০ টাকা বোনাস পাবেন, পরবর্তী প্রতিটি রেফার করলেই ১০+ টাকা বোনাস পাবেন (১০, ২০, ৩০,...)।</li>
+    <li>🕒 দৈনিক টাস্ক সম্পন্ন করে প্রতিদিন ইনকাম করুন।</li>
+    <li>💳 ৫০০ টাকা হলে উত্তোলন করতে পারবেন (bKash, Nagad, Rocket, Upay)।</li>
+    <li>🚀 যত বেশি রেফার, তত বেশি আয়।</li>
+    <li>📞 সমস্যার জন্য আমাদের সাপোর্ট টিমে যোগাযোগ করুন।</li>
+  </ul>
+</div>
+
+<!-- Firebase Script -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-app.js";
+  import { getDatabase, ref, set, get, update } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-database.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyAU495xD5KwxiJNjCgMKAyBCiI0MR_ouAE",
+    authDomain: "personal-2501f.firebaseapp.com",
+    projectId: "personal-2501f",
+    storageBucket: "personal-2501f.appspot.com",
+    messagingSenderId: "302869002628",
+    appId: "1:302869002628:web:f0a0f2ece7dcb4086085d1",
+    measurementId: "G-30M1RPYWTC",
+    databaseURL: "https://inc-project-65096-default-rtdb.firebaseio.com/"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getDatabase(app);
+
+  let myId = localStorage.getItem("myId");
+  if (!myId) {
+    myId = "user_" + Math.random().toString(36).substr(2, 9);
+    localStorage.setItem("myId", myId);
+  }
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const refId = urlParams.get("ref");
+
+  if (refId && refId !== myId) {
+    let referredList = JSON.parse(localStorage.getItem("referredList") || "[]");
+    if (!referredList.includes(refId)) {
+      const refPath = ref(db, "users/" + refId);
+      get(refPath).then(snapshot => {
+        if (snapshot.exists()) {
+          const data = snapshot.val();
+          // First referral adds 100 Taka, subsequent referrals add 10+ each time
+          const referralBonus = (data.refCount === 0) ? 100 : (data.refCount * 10);
+          update(refPath, {
+            refCount: (data.refCount || 0) + 1,
+            balance: (data.balance || 0) + referralBonus
+          });
+          referredList.push(refId);
+          localStorage.setItem("referredList", JSON.stringify(referredList));
+          
+          // Update the UI to show the bonus amount
+          if (data.refCount === 0) {
+            alert("প্রথম রেফারেল সফল! ১০০ টাকা বোনাস যোগ করা হয়েছে।");
+          } else {
+            alert(`রেফারেল সফল! ${referralBonus} টাকা বোনাস যোগ করা হয়েছে।`);
+          }
+        }
+      });
+    }
+  }
+
+  
+// Update the referral link display and click handler
+const myLink = window.location.origin + window.location.pathname + "?ref=" + myId;
+const refText = "আমার রেফারেল লিংক ব্যবহার করে রেজিস্টার করুন এবং প্রথম রেফারেল করলেই ১০০ টাকা বোনাস পান! " + myLink;
+document.getElementById("myRefLink").innerText = refText;
+
+document.getElementById('myRefLink').addEventListener('click', function() {
+  navigator.clipboard.writeText(refText).then(() => {
+    const originalText = this.innerText;
+    this.innerText = 'সমস্ত টেক্সট কপি হয়েছে ✅';
+    window.open("https://www.profitableratecpm.com/ur1t9msjv?key=9bfb6c4ea6752ff7ea5714603ad7e26a", "_blank");
+    setTimeout(() => {
+      this.innerText = originalText;
+    }, 2000);
+  }).catch(err => {
+    console.error('Could not copy text: ', err);
+    alert('টেক্সট কপি করতে সমস্যা হয়েছে। ম্যানুয়ালি কপি করুন।');
+  });
+});
+
+// Also update the title attribute to indicate it's clickable
+document.getElementById('myRefLink').title = "ক্লিক করে সমস্ত টেক্সট কপি করুন";
+
+
+  function loadMyData() {
+    const myPath = ref(db, "users/" + myId);
+    get(myPath).then(snapshot => {
+      if (snapshot.exists()) {
+        const data = snapshot.val();
+        document.getElementById("myRefCount").innerText = data.refCount || 0;
+        document.getElementById("myBalance").innerText = data.balance || 0;
+      } else {
+        set(myPath, { refCount: 0, balance: 0 });
+      }
+    });
+  }
+  loadMyData();
+
+  window.shareRef = function () {
+    
+    if (navigator.share) {
+      navigator.share({
+        title: 'রেফারেল প্রোগ্রাম - সহজে টাকা আয় করুন',
+        text: 'আমার রেফারেল লিংক ব্যবহার করে রেজিস্টার করুন এবং প্রথম রেফারেল করলেই ১০০ টাকা বোনাস পান!',
+        url: myLink
+      }).then(() => {
+        console.log('Thanks for sharing!');
+        
+      }).catch(err => {
+        console.log('Error sharing:', err);
+        copyRef();
+      });
+    } else {
+      copyRef();
+    }
+  };
+
+  window.copyRef = function () {
+    navigator.clipboard.writeText(myLink);
+    alert("রেফারেল লিংক কপি হয়েছে ✅");
+    window.open("https://www.profitableratecpm.com/ur1t9msjv?key=9bfb6c4ea6752ff7ea5714603ad7e26a", "_blank");
+  };
+
+  window.showReferral = function () {
+    document.getElementById("refLinkContainer").style.display = "block";
+    document.getElementById("showRefBtn").style.display = "none";
+    window.open("https://www.profitableratecpm.com/ur1t9msjv?key=9bfb6c4ea6752ff7ea5714603ad7e26a", "_blank");
+  };
+
+  window.toggleWithdraw = function () {
+    const withdrawSection = document.getElementById("withdrawSection");
+    const dailyTaskBox = document.getElementById("dailyTaskBox");
+    if (dailyTaskBox.style.display === "block") {
+      dailyTaskBox.style.display = "none";
+    }
+    withdrawSection.style.display = withdrawSection.style.display === "block" ? "none" : "block";
+  };
+
+  window.confirmWithdraw = function () {
+    const method = document.getElementById("paymentMethod").value;
+    const number = document.getElementById("accountNumber").value;
+    const balance = parseInt(document.getElementById("myBalance").innerText);
+
+    if (balance < 500) {
+      alert("ন্যূনতম উত্তোলনযোগ্য পরিমাণ ৫০০ টাকা ❌");
+      return;
+    }
+    if (!method) {
+      alert("অনুগ্রহ করে একটি পেমেন্ট পদ্ধতি নির্বাচন করুন");
+      return;
+    }
+    if (!number || number.length < 6) {
+      alert("অনুগ্রহ করে একটি বৈধ অ্যাকাউন্ট নম্বর লিখুন");
+      return;
+    }
+
+    const withdrawRef = ref(db, "withdrawRequests/" + myId + "/" + Date.now());
+    set(withdrawRef, { method, account: number, amount: balance, status: "Pending" });
+
+    // Reset balance to 0 after withdrawal
+    const myPath = ref(db, "users/" + myId);
+    update(myPath, { balance: 0 }).then(() => {
+      document.getElementById("myBalance").innerText = "0";
+      alert("উত্তোলনের অনুরোধ সফলভাবে জমা দেওয়া হয়েছে ✅ আপনার ব্যালেন্স রিসেট করা হয়েছে।");
+      document.getElementById("withdrawSection").style.display = "none";
+    });
+  };
+
+  // Daily Task
+  const dailyTasksDiv = document.getElementById("dailyTasks");
+  const dailyTaskBox = document.getElementById("dailyTaskBox");
+  const TASK_COUNT = 5;
+  const TASK_COOLDOWN = 3600 * 1000;
+  let cooldowns = JSON.parse(localStorage.getItem("taskCooldowns") || "{}");
+
+  window.toggleDailyTasks = function () {
+    const withdrawSection = document.getElementById("withdrawSection");
+    if (withdrawSection.style.display === "block") {
+      withdrawSection.style.display = "none";
+    }
+    dailyTaskBox.style.display = dailyTaskBox.style.display === "block" ? "none" : "block";
+
+    if (dailyTaskBox.style.display === "block" && dailyTasksDiv.childElementCount === 0) {
+      for (let i = 1; i <= TASK_COUNT; i++) {
+        const btn = document.createElement("button");
+        btn.id = "taskBtn_" + i;
+        btn.textContent = "টাস্ক " + i;
+        btn.onclick = () => handleTaskClick(i);
+        const countdownSpan = document.createElement("span");
+        countdownSpan.className = "countdown";
+        btn.appendChild(countdownSpan);
+        dailyTasksDiv.appendChild(btn);
+      }
+    }
+    updateTaskButtons();
+  };
+
+  function handleTaskClick(taskNum) {
+    const now = Date.now();
+    if (cooldowns[taskNum] && now - cooldowns[taskNum] < TASK_COOLDOWN) {
+      alert("এই টাস্কটি এখনও ১ ঘণ্টার জন্য বন্ধ আছে।");
+      return;
+    }
+    window.open("https://www.profitableratecpm.com/ur1t9msjv?key=9bfb6c4ea6752ff7ea5714603ad7e26a", "_blank");
+
+    const myPath = ref(db, "users/" + myId);
+    get(myPath).then(snapshot => {
+      if (snapshot.exists()) {
+        const data = snapshot.val();
+        const newBalance = (data.balance || 0) + 2;
+        update(myPath, { balance: newBalance }).then(() => {
+          document.getElementById("myBalance").innerText = newBalance;
+        });
+      }
+    });
+
+    cooldowns[taskNum] = now;
+    localStorage.setItem("taskCooldowns", JSON.stringify(cooldowns));
+    updateTaskButtons();
+  }
+
+  function updateTaskButtons() {
+    const now = Date.now();
+    for (let i = 1; i <= TASK_COUNT; i++) {
+      const btn = document.getElementById("taskBtn_" + i);
+      if (!btn) continue;
+      const countdownSpan = btn.querySelector(".countdown");
+      const lastTime = cooldowns[i] || 0;
+      const diff = TASK_COOLDOWN - (now - lastTime);
+      if (diff > 0) {
+        btn.disabled = true;
+        const seconds = Math.floor(diff / 1000);
+        const m = Math.floor(seconds / 60);
+        const s = seconds % 60;
+        countdownSpan.textContent = `(${m}:${s.toString().padStart(2, "0")})`;
+      } else {
+        btn.disabled = false;
+        countdownSpan.textContent = "";
+      }
+    }
+  }
+  setInterval(() => {
+    if (dailyTaskBox.style.display === "block") {
+      updateTaskButtons();
+    }
+  }, 1000);
+</script>
+</body>
+</html>
